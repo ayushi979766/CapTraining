@@ -221,7 +221,7 @@ module.exports = cds.service.impl((srv) => {
             .on('a.ID = b.customer_ID')
             .columns(['a.ID', 'a.name', 'a.city', { 'b.ID': 'Order_id' },
                 { 'b.orderNo': 'OrderNo' }, { 'b.amount': 'order_ammount' }]);
-        return FullJoinData;
+        // return FullJoinData;
 
     });
 

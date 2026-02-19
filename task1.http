@@ -1,0 +1,416 @@
+
+    // GET -> get data
+    // POST -> Create data
+    // PATCH -> Partial Fields Update
+    // PUT -> Full data updated (all fields required)
+    // DELETE -> Delete Data
+
+
+# GET http://localhost:4004/odata/v4/my-service1/EmpTable?$expand=company     
+# GET http://localhost:4004/odata/v4/my-service1/Student
+# GET http://localhost:4004/odata/v4/my-service1/Product
+# GET http://localhost:4004/odata/v4/my-service1/Company?$expand=employee 
+# GET http://localhost:4004/odata/v4/my-service1/OrderHeader?$expand=items 
+# GET http://localhost:4004/odata/v4/my-service1/OrderItem?$expand=order
+# GET http://localhost:4004/odata/v4/my-service1/OrderLink?$expand=item
+# GET http://localhost:4004/odata/v4/my-service1/OrderLink?$expand=header
+# GET http://localhost:4004/odata/v4/my-service1/OrderDetails                                   views
+# GET http://localhost:4004/odata/v4/my-service1/OrderItemDetails                               views
+# GET http://localhost:4004/odata/v4/my-service1/WithParams(Parameter='OrderNo-19122265')/Set   view with parameter  
+# GET http://localhost:4004/odata/v4/my-service1/welcome()    
+# GET http://localhost:4004/odata/v4/my-service1/Addition(a=10,b=20)
+# GET http://localhost:4004/odata/v4/my-service1/CalculatePrice(price=1000,discount=200)
+# GET http://localhost:4004/odata/v4/my-service1/OrderItem(ID=10438638-ef9b-4de1-8a0b-e8b3027af1e4)/getStockStatus()
+# GET http://localhost:4004/odata/v4/my-service1/Items
+# GET http://localhost:4004/odata/v4/my-service1/Human
+# GET http://localhost:4004/odata/v4/my-service1/AadharCard
+# GET http://localhost:4004/odata/v4/my-service1/HumanAadhar?$expand=human
+# GET http://localhost:4004/odata/v4/my-service1/HumanAadhar?$expand=aadhar
+# GET http://localhost:4004/odata/v4/my-service1/OrderLink
+# GET http://localhost:4004/odata/v4/my-service1/PersonLogs
+# GET http://localhost:4004/odata/v4/my-service1/Person
+GET http://localhost:4004/odata/v4/my-service1/Customer                                      
+###
+
+# POST http://localhost:4004/odata/v4/my-service1/Person
+# Content-Type: application/json
+
+# {
+#       "first_name": "Kaminee",
+#       "middle_name": "",
+#       "Last_name": "Kushwaha",
+#       "House_No": 70,
+#       "Street_name": "24",
+#       "City": "bhopal",
+#       "state": "MP",
+#       "Pincode": 462010,
+#       "createdAt": "2023-11-17T00:00:00.000Z",
+#       "createdBy": "createdBy.3c0a5@example.net",
+#       "modifiedAt": "2012-10-14T00:00:00.000Z",
+#       "modifiedBy": "modifiedBy.3c0a5@example.com",
+#       "ID": 70,
+#       "Contact": "400999",
+#       "Email": "40mail",
+#       "Age":24
+#     }
+
+# ###
+# PATCH  http://localhost:4004/odata/v4/my-service1/Person/1000
+# Content-Type: application/json
+
+# {
+#       "first_name": "abhishek",
+#       "middle_name": "kumar",
+#       "Last_name": "Tiwari", 
+#       "Age":28
+# }
+
+
+###
+# DELETE http://localhost:4004/odata/v4/my-service1/Person/50000
+
+# POST http://localhost:4004/odata/v4/my-service1/Human
+# Content-Type: application/json
+#  // Deep insert supported -> N:N Composition (Human,HumanAadhar)
+
+# {
+#   "ID": "800",
+#   "Name": "Nikita",
+#   "Age": 22,
+#   "links": [
+#     {
+#       "human_ID": "HA8",
+#       "aadhar_ID": "AA8"
+#     },
+#     {
+#       "human_ID": "HA7",
+#       "aadhar_ID": "AA7"
+#     }
+#   ]
+# }
+
+# ###
+
+# POST http://localhost:4004/odata/v4/my-service1/AadharCard
+# Content-Type: application/json
+#  // Deep insert supported -> N:N Composition (AadharCard ,HumanAadhar)
+
+# {
+#   "ID": "600",
+#    "AadharNumber": 456789123456,
+#   "Address": "Jabalpur",
+#   "links": [
+#     {
+#       "human_ID": "HA4",
+#       "aadhar_ID": "AA12"
+#     },
+#     {
+#       "human_ID": "HA5",
+#       "aadhar_ID": "AA2"
+#     }
+#   ]
+# }
+
+
+# POST http://localhost:4004/odata/v4/my-service1/Human
+# Content-Type: application/json
+# # // Deep insert supported -> 1:N Composition (Human and AadharCard)
+
+# {
+#   "ID": "300",
+#   "Name": "Nikita",
+#   "Age": 23,
+#   "aadhar": [
+#     {
+#       "ID": "N1",
+#       "AadharNumber": "111122223333",
+#       "Address": "Bhopal"
+#     },
+#     {
+#       "ID": "N2",
+#       "AadharNumber": "444455556666",
+#       "Address": "Indore"
+#     },
+#     {
+#       "ID": "N3",
+#       "AadharNumber": "12345678888",
+#       "Address": "Jabalpur"
+#     }
+#   ]
+# }
+
+### 
+
+# POST http://localhost:4004/odata/v4/my-service1/Human
+# Content-Type: application/json
+# // Deep insert supported -> 1:1 Composition (Human and AadharCard)
+# {
+#       "ID": "300",
+#       "Name": "Nikita",
+#       "Age": 23,
+#       "aadhar": {
+#       "ID": "A2",
+#       "AadharNumber": "12345678999",
+#       "Address": "Address-bhopal"
+#   }
+# }
+
+
+# POST http://localhost:4004/odata/v4/my-service1/Items(ID=10438638-ef9b-4de1-8a0b-e8b3027af1e4)/getResult
+
+# POST http://localhost:4004/odata/v4/my-service1/getNotification
+# Content-Type: application/json
+
+# {
+#     "message" : "Server Maintainance."
+# }
+
+# POST http://localhost:4004/odata/v4/my-service1/OrderLink
+# //= N:N Association (OrderLink and Items and Header)
+# Content-Type: application/json
+
+# {
+#       "ID": "Link-3",
+#       "header_ID": "Header-3",
+#       "item_ID": "item-3"
+# }
+
+# ###
+
+# POST http://localhost:4004/odata/v4/my-service1/OrderItem
+# //= N:N Association (OrderLink and Items)
+# Content-Type: application/json
+
+# {
+#       "ID": "item-3",
+#       "Product": "Books",
+#       "stock": "24"
+# }
+
+# ###
+
+# POST http://localhost:4004/odata/v4/my-service1/OrderHeader
+# //= N:N Association (Header and OrderLink)
+# Content-Type: application/json
+
+# {
+#       "ID": "Header-3",
+#       "OrderNo": "333",
+#       "OrderDate": "2026-02-09"
+# }
+
+
+# POST http://localhost:4004/odata/v4/my-service1/OrderItem
+# //= 1:N Association (Header and Items)
+# Content-Type: application/json
+
+# {
+#       "ID": "16",
+#       "Product": "Books",
+#       "stock": "24",
+#       "order_ID" : "27098295-e601-4888-b8d0-bb991836d837"
+# }
+
+# ###
+
+# POST http://localhost:4004/odata/v4/my-service1/OrderHeader
+# //= 1:N Association (Header and Items)
+# Content-Type: application/json
+
+# {
+#       "ID": "2",
+#       "OrderNo": "222",
+#       "OrderDate": "2026-02-09"
+# }
+
+
+
+# POST http://localhost:4004/odata/v4/my-service1/OrderItem
+# //= 1:1 Association (Header and Items)
+# Content-Type: application/json
+
+# {
+#       "ID": "3",
+#       "Product": "Books",
+#       "stock": "20"
+# }
+
+# POST http://localhost:4004/odata/v4/my-service1/OrderHeader
+# //= 1:1 Association (Header and Items)
+# Content-Type: application/json
+
+# {
+#       "ID": "5",
+#       "OrderNo": "333",
+#       "OrderDate": "2026-02-09",
+#       "items_ID": "3"
+# }
+
+# POST http://localhost:4004/odata/v4/my-service1/Company
+# Content-Type: application/json
+
+# {
+#       "ID": 11,
+#       "Name": "NetLink",
+#       "Location": "Bhopal",
+#       "EmpTable_ID" : "112"
+# }
+
+
+# POST http://localhost:4004/odata/v4/my-service1/EmpTable
+# Content-Type: application/json
+
+# {
+#       // ID Generated Automatically - UUID
+#       "Name": "Ayushi",
+#       "Contact": 987411,
+#       "Address": "Bhopal",
+#       "Salary": 1234.58,
+#       "Email": [
+#         "ayushi@gmail.com"
+#       ],
+#       "Joindate": "2026-01-09",
+#       "Jointime": "11:16:19",
+#       "extra_value": 9898.98,            
+#       "extra_Curr": "INR",
+#      "Company_ID": 112
+# }
+
+# POST http://localhost:32899/odata/v4/my-service1/Student
+# Content-Type: application/json
+
+#     {
+    
+#        "Name": "Nikita",
+#       "Contact": 99999999,
+#       "Email": [
+#         "Nikita@gmail.com",
+#         "abc@gmail.com"
+#       ],
+#       "dob": "2001-10-02",
+#       "Address": "Pune",
+#       "Pincode": 965696,
+#       "age": 18,
+#       "Subject": "PCM",
+#       "Gender": "Male",
+#       "Marks_English": 70,
+#       "Marks_Hindi": 90,
+#       "Marks_Science": 85,
+#       "Marks_Maths": 95,
+#       "Percentage": 88.02,
+#       "isActive": 1
+#     }
+
+# POST http://localhost:4004/odata/v4/my-service1/Product
+# Content-Type: application/json
+
+# {
+  
+#       "ProdName": "12345tg",
+#       "Brand": "Nars",
+#       "Category": "Cosmetic",
+#       "price_value": 1500.00,
+#       "price_Curr": "INR",
+#       "Quantity": 10,
+#       "MFD": "2023-10-31",
+#       "Expiry": "2035-12-31",
+#       "Status": "InStock"
+# }
+
+###
+
+# PATCH  http://localhost:4004/odata/v4/my-service1/EmpTable/ef6405a3-8516-4407-b918-a38a090a6177
+# Content-Type: application/json
+
+# {
+    
+     
+#       "Address" : "Jabalpur",
+#       "Salary": 1211.11,
+#       "Email": [
+#       "ayushi@gmail.com",
+#       "xyz@gmail.com",
+#       "wer@gmail.com"
+#       ],
+#       "Joindate":"2022-02-13",
+#       "extra_value": 2222.22,
+#       "extra_Curr": "USD"
+
+# }
+
+# PATCH  http://localhost:32899/odata/v4/my-service1/Student/540867ee-753e-4c8e-8f62-0ea623dc1b1d
+# Content-Type: application/json
+
+#     {
+      
+#       "Subject": "BIO",
+#       "Gender": "Female",
+#       "Marks_English": 90,
+#       "Marks_Hindi": 90,
+#       "Marks_Science": 90,
+#       "Marks_Maths": 90,
+#       "Percentage": 90.00,
+#       "isActive": true
+#     }
+
+# PATCH http://localhost:4004/odata/v4/my-service1/Product/832f829a-3722-4dd6-8cc2-431d65557689
+# Content-Type: application/json
+
+# {
+#       "ProdName": "BigShoe",
+#       "price_value": 3000.00,
+#       "price_Curr": "INR",
+#       "Quantity": 30,
+#       "Status": "InStock"
+# }
+
+###
+
+# DELETE http://localhost:4004/odata/v4/my-service1/EmpTable/ef6405a3-8516-4407-b918-a38a090a6177
+# DELETE http://localhost:32899/odata/v4/my-service1/Student/b1ac5b7e-c798-4db2-87bb-24961584509c
+
+# DELETE http://localhost:4004/odata/v4/my-service1/Product/bf1d6e64-7e26-4042-a109-8f51deff508a
+
+
+###
+
+# PUT http://localhost:32899/odata/v4/my-service1/Student
+# Content-Type: application/json
+
+#     {
+#       "ID" : "1",
+#        "Name": "Ayush",
+#       "Contact": 99999999,
+#       "Email": [
+#         "Nikita@gmail.com",
+#         "abc@gmail.com"
+#       ],
+#       "dob": "2001-10-02",
+#       "Address": "Pune",
+#       "Pincode": 965696,
+#       "age": 18,
+#       "Subject": "PCM",
+#       "Gender": "Female",
+#       "Marks_English": 70,
+#       "Marks_Hindi": 90,
+#       "Marks_Science": 85,
+#       "Marks_Maths": 95,
+#       "Percentage": 88.02,
+#       "isActive": 1
+#     }
+
+# PUT http://localhost:4004/odata/v4/my-service1/Product
+# Content-Type: application/json
+
+# {
+#       "ProductID":"832f829a-3722-4dd6-8cc2-431d65557689",
+#       "ProdName": "LargeShoe",
+#       "Brand": "Campus",
+#       "Category": "Shoes",
+#       "price_value": 7000.00,
+#       "price_Curr": "USD",
+#       "Quantity": 89,
+#       "MFD": "2021-10-31",
+#       "Expiry": "2029-12-31",
+#       "Status": "OutofStock"
+# }

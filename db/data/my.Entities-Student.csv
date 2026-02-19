@@ -1,0 +1,4 @@
+ID,Name,Contact,Email,dob,Address,Pincode,age,Subject,Gender,Marks_English,Marks_Hindi,Marks_Science,Marks_Maths,Percentage,isActive
+15167645-bf1b-49fb-b834-f711a3eb29ea,Name-15167645,58,"[""my.Entities.Email-15167645""]",2018-09-26,Address-15167645,81,16,BIO,Other,86,86,60,93,29.54,false
+15167646-2ab9-4523-af06-dd6c77a95a19,Name-15167646,27,"[""my.Entities.Email-15167646""]",2007-12-22,Address-15167646,29,19,COMMERECE,Female,47,40,68,26,43.02,true
+15167647-3f4e-40b3-9d44-56dbdfd49865,Name-15167647,36,"[""my.Entities.Email-15167647""]",2012-01-12,Address-15167647,81,9,BIO,Other,67,18,31,25,23.05,false

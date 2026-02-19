@@ -1,0 +1,4 @@
+ProductID,ProdName,Brand,Category,price_value,price_Curr,Quantity,MFD,Expiry,Status
+30198981-e052-4e72-93af-a6f728429b69,ProdName-30198981,Adidas,Category-30198981,6453.87,Curr-30198981,3,2021-11-09,2017-01-26,OutOfStock
+30198982-8d54-4279-9afa-fafbd7683420,ProdName-30198982,Campus,Category-30198982,2864.53,Curr-30198982,13,2018-04-05,2006-03-17,InStock
+30198983-e19b-4207-b7ff-8556fea41e94,ProdName-30198983,RedTape,Category-30198983,6664.83,Curr-30198983,66,2002-07-18,2004-04-27,InStock

@@ -22,14 +22,14 @@
 # GET http://localhost:4004/odata/v4/my-service1/CalculatePrice(price=1000,discount=200)
 # GET http://localhost:4004/odata/v4/my-service1/OrderItem(ID=10438638-ef9b-4de1-8a0b-e8b3027af1e4)/getStockStatus()
 # GET http://localhost:4004/odata/v4/my-service1/Items
-# GET http://localhost:4004/odata/v4/my-service1/Human
+GET http://localhost:4004/odata/v4/my-service1/Human
 # GET http://localhost:4004/odata/v4/my-service1/AadharCard
 # GET http://localhost:4004/odata/v4/my-service1/HumanAadhar?$expand=human
 # GET http://localhost:4004/odata/v4/my-service1/HumanAadhar?$expand=aadhar
 # GET http://localhost:4004/odata/v4/my-service1/OrderLink
 # GET http://localhost:4004/odata/v4/my-service1/PersonLogs
 # GET http://localhost:4004/odata/v4/my-service1/Person
-GET http://localhost:4004/odata/v4/my-service1/Customer                                      
+# GET http://localhost:4004/odata/v4/my-service1/Customer                                      
 ###
 
 # POST http://localhost:4004/odata/v4/my-service1/Person
